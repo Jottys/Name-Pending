@@ -50,13 +50,12 @@ public class PlayerController : MonoBehaviour
         {
             velocity.y = velocity.y * jumpHeight;
         }
-        else
 
-        if (!isGrounded)
+       /* if (!isGrounded)
         {
             velocity += Physics2D.gravity * Time.deltaTime;
 
-        }
+        } */
 
     }
 

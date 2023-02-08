@@ -54,18 +54,19 @@ public class NewPlayerMovement : MonoBehaviour
 
     void Raycast()
     {
-        RaycastHit2D hit;
+        RaycastHit2D downHit;
+        RaycastHit2D rightHit;
 
         for (int i = -1; i < 2; i++)
         {
             Debug.DrawRay(transform.position + (Vector3.right * 0.5f * i), Vector2.down * 100, Color.red);
-            if (hit = Physics2D.Raycast(transform.position + (Vector3.right * 0.5f * i), Vector2.down))
+            if (downHit = Physics2D.Raycast(transform.position + (Vector3.right * 0.5f * i), Vector2.down))
             {
-                if (hit.distance > 1f)
+                if (downHit.distance > 1f)
                 {
                     isGrounded = false;
                 }
-                else if (hit.transform.tag == "Ground")
+                else if (downHit.transform.tag == "Ground")
                 {
                     isGrounded = true;
                     playerVelocity.y = 0;
@@ -73,11 +74,15 @@ public class NewPlayerMovement : MonoBehaviour
             }
         }
 
-        for (int i = -2; i < 3; i++)
+        for (int i = -1; i < 2; i++)
         {
             Debug.DrawRay(transform.position + (Vector3.up * 0.5f * i), Vector2.right * 100, Color.red);
-            if (hit = Physics2D.Raycast(transform.position + (Vector3.up * 0.5f * i), Vector2.right * 100))
+            if (rightHit = Physics2D.Raycast(transform.position + (Vector3.up * 0.5f * i), Vector2.right * 100))
             {
+                if (rightHit.distance > 0.5f)
+                {
+                    playerVelocity.x -= playerVelocity.x;
+                }
             }
         }
     }
